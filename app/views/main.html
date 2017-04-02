@@ -1,0 +1,47 @@
+
+<div ng-controller="MainCtrl">
+  
+  
+<!--   <input type="text" ng-model="artistSearchBox" ng-change="checkArtist()" /> -->
+<!--   <p ng-data="artistList">{{artistList}}</p> -->
+ 
+
+
+
+
+<ui-select placeholder="Type the artist name here.." ng-model="selectedArtist.value" ng-change="getAlbums()">
+    <ui-select-match placeholder="Type the artist name here..">
+         <span ng-bind="$select.selected.name"></span>
+    </ui-select-match>
+    <ui-select-choices repeat="item in artistList|filter:name = $select.search" refresh="checkArtist($select.search)"
+                   refresh-delay="10">
+        <span ng-bind="item.name"></span>
+    </ui-select-choices>
+</ui-select>
+
+
+
+<ui-select ng-model="selectedAlbum.value" ng-change="getTracks()">
+    <ui-select-match >
+         <span  ng-bind="$select.selected.name"></span>
+    </ui-select-match>
+    <ui-select-choices repeat="item in albumList| filter:{name : $select.search}">
+        <span ng-bind="item.name"></span>
+    </ui-select-choices>
+</ui-select>
+
+
+
+<ui-select ng-model="selectedTrack.value">
+    <ui-select-match>
+         <span ng-bind="$select.selected.name"></span>
+    </ui-select-match>
+    <ui-select-choices repeat="item in trackList| filter:item.type = 'track'">
+        <span ng-bind="item.name"></span>
+    </ui-select-choices>
+</ui-select>
+
+
+
+
+  </div>
